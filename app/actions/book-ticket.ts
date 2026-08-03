@@ -50,7 +50,7 @@ export async function bookTicket(eventId: string) {
 
       const order = await tx.order.create({
         data: {
-          userId: userId,
+          userEmail: userId,
           eventId: event.id,
           totalPrice: event.price,
         },
