@@ -1,3 +1,4 @@
+/*
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -28,6 +29,51 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
+    </html>
+  );
+}
+*/
+import './globals.css';
+import Link from 'next/link';
+
+export const metadata = {
+  title: 'Evently - Ticketing Platform',
+  description: 'Discover and book community meetups, live concerts, and tech summits.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className="bg-slate-950 text-slate-50 min-h-screen">
+        {/* Global Navigation Bar */}
+        <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+          <div className="max-w-6xl mx-auto flex justify-between items-center">
+            <Link href="/" className="text-xl font-extrabold text-indigo-400 tracking-tight">
+              Evently
+            </Link>
+            <nav className="flex items-center gap-6">
+              <Link 
+                href="/" 
+                className="text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors"
+              >
+                Home
+              </Link>
+              <Link 
+                href="/my-tickets" 
+                className="text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors"
+              >
+                My Tickets
+              </Link>
+            </nav>
+          </div>
+        </header>
+
+        {children}
+      </body>
     </html>
   );
 }

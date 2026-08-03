@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  
+}
+
+model Event {
+  id               String    @id @default(cuid())
+  title            String
+  description      String
+  price            String
+  location         String
+  date             String
+  availableTickets Int
+  organizerName    String
+  organizerHandle  String
+  
+  banner           String
+  imageUrl         String
+  organizerAvatar  String
+  category         String    @default("Music")
+  createdAt        DateTime  @default(now())
+  messages         Message[]
+  tickets          Ticket[]
+  totalTickets     Int
+
+  
+  orders           Order[]
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  text       String
+  userName   String
+  userHandle String
+  userAvatar String
+  eventId    String
+  event      Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+}
+
+model Order {
+  id         String   @id @default(uuid())
+  eventId    String
+  userEmail  String
+  quantity   Int      @default(1)
+  totalPrice String
+  createdAt  DateTime @default(now())
+
+  event      Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+
+
+model Ticket {
+  id        String   @id @default(cuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+}
