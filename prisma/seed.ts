@@ -31,6 +31,8 @@ async function main() {
       location: "Gachibowli, Hyderabad",
       date: "May 20, 2026",
       availableTickets: 50,
+      
+      totalTickets: 50,
       organizerName: "SRH Fan Club",
       organizerHandle: "@srh_fans",
       organizerAvatar:
